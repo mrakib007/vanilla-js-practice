@@ -23,4 +23,6 @@ const rakib = 'react';
     console.log(rakib);
 }
 
+let d = null;
+console.log(d);
 console.log(rakib);
