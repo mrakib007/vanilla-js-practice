@@ -21,3 +21,8 @@ let multi = arr.reduce((x1,x2)=>{
     return x1*x2;
 },2);
 console.log(multi);
+
+let randomNum = Math.floor((Math.random() * 100) + 1);
+let myGuess = 0;
+let guess;
+
