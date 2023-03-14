@@ -41,3 +41,4 @@ function hello(error,src){
     alert("hello world"+ src);
 }
 loadScript("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",hello);
+// loadScript("https://cdn.jsdelivr.net/npm/bootstrkjhkjhkjap@5.0.2/dist/js/bootstrap.bundle.min.js",hello);
