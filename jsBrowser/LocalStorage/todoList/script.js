@@ -10,6 +10,7 @@ addButton.addEventListener('click', function () {
   const newTask = {
     text: taskText,
     done: false,
+    id: Date.now(), // generate a unique ID for the task
   };
 
   // Add the new task to the savedTasks array and save it to local storage
@@ -27,6 +28,7 @@ addButton.addEventListener('click', function () {
 function addTaskToTable(task) {
   const tableBody = document.getElementById('todo-table-body');
   const newRow = tableBody.insertRow();
+  newRow.id = task.id; // set the row ID to the task ID
 
   const taskCell = newRow.insertCell();
   taskCell.textContent = task.text;
@@ -37,17 +39,17 @@ function addTaskToTable(task) {
   deleteButton.className = 'btn btn-danger';
   deleteButton.addEventListener('click', function () {
     // Remove the task from the savedTasks array and save it to local storage
-    const index = savedTasks.indexOf(task);
-    savedTasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(savedTasks));
+    const index = savedTasks.findIndex(t => t.id === task.id);
+    if (index >= 0) {
+      savedTasks.splice(index, 1);
+      localStorage.setItem('tasks', JSON.stringify(savedTasks));
+    }
 
-    // Remove the task from the table
-    tableBody.removeChild(newRow);
+    // Remove the row from the table
+    newRow.remove();
   });
   deleteCell.appendChild(deleteButton);
 }
 
-// Add the saved tasks to the table
-for (let i = 0; i < savedTasks.length; i++) {
-  addTaskToTable(savedTasks[i]);
-}
+// Load the saved tasks into the table
+savedTasks.forEach(addTaskToTable);
